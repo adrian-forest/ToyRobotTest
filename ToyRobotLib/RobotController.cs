@@ -141,14 +141,39 @@ namespace ToyRobotLib
     {
       Coordinates newPosition = new() { X = -1, Y = -1 };
 
-      // Set X value from command
-      if (int.TryParse(command.Substring(command.IndexOf(' '), command.IndexOf(',')), out int newX))
+      // Set X value from command by finding a number between the first space and first comma
+      var firstSpacePos = command.IndexOf(' ') + 1;
+      var firstCommaPos = command.IndexOf(',');
+
+      // Test to ensure one or more characters can be extracted
+      if (firstSpacePos < 0 || firstCommaPos < 0 || firstCommaPos < firstSpacePos)
+      {
+        return newPosition;
+      }
+
+      if (int.TryParse(
+        command.Substring(
+          firstSpacePos,
+          firstCommaPos - firstSpacePos), 
+        out int newX))
       {
         newPosition.X = newX;
       }
 
-      // Set Y value from command
-      if (int.TryParse(command.Substring(command.IndexOf(','), command.LastIndexOf(',')), out int newY))
+      // Set Y value from command by finding a number between the first and last commas
+      var lastCommaPos = command.LastIndexOf(',');
+
+      // Test to ensure one or more characters can be extracted
+      if (firstCommaPos == lastCommaPos)
+      {
+        return newPosition;
+      }
+
+      if (int.TryParse(
+        command.Substring(
+          firstCommaPos + 1,
+          lastCommaPos - (firstCommaPos + 1)), 
+        out int newY))
       {
         newPosition.Y = newY;
       }
