@@ -147,25 +147,26 @@ namespace ToyRobotLib
         return newPosition;
       }
 
-      if (int.TryParse(
-        command.Substring(
-          firstSpacePos,
-          firstCommaPos - firstSpacePos), 
-        out int newX))
+      string xValue = command.Substring(firstSpacePos, firstCommaPos - firstSpacePos);
+
+      if (string.IsNullOrWhiteSpace(xValue))
+      {
+        return newPosition;
+      }
+
+      if (int.TryParse(xValue, out int newX))
       {
         newPosition.X = newX;
+      }
+      else
+      {
+        return newPosition;
       }
 
       // Set Y value from command by finding a number between the first and last commas
       var lastCommaPos = command.LastIndexOf(',');
 
-      // Test to ensure one or more characters can be extracted
-      if (firstCommaPos == lastCommaPos)
-      {
-        return newPosition;
-      }
-
-      string yValue = lastCommaPos > 0
+      string yValue = lastCommaPos > firstCommaPos
           ? command.Substring(
           firstCommaPos + 1,
           lastCommaPos - (firstCommaPos + 1))
