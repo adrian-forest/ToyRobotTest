@@ -165,11 +165,13 @@ namespace ToyRobotLib
         return newPosition;
       }
 
-      if (int.TryParse(
-        command.Substring(
+      string yValue = lastCommaPos > 0
+          ? command.Substring(
           firstCommaPos + 1,
-          lastCommaPos - (firstCommaPos + 1)), 
-        out int newY))
+          lastCommaPos - (firstCommaPos + 1))
+          : command.Substring(firstCommaPos + 1);
+
+      if (int.TryParse(yValue, out int newY))
       {
         newPosition.Y = newY;
       }
