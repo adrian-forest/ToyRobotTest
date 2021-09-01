@@ -117,12 +117,8 @@ namespace ToyRobotLib
     /// <returns>The direction found in the command</returns>
     private static Directions GetDirection(string command)
     {
-      if (!validDirections.Contains(command[command.LastIndexOf(',')..]))
-      {
-        return Directions.Invalid;
-      }
-
-      return command switch
+      // Get the direction from the characters after the last comma
+      return command.Substring(command.LastIndexOf(',') + 1) switch
       {
         "NORTH" => Directions.North,
         "SOUTH" => Directions.South,
