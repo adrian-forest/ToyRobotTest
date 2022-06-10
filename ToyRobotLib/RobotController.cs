@@ -74,6 +74,7 @@ namespace ToyRobotLib
     /// <returns>The robot's current position and facing after the input is parsed.</returns>
     public string CommandInput(string command)
     {
+      command = command.ToUpperInvariant();
       if (command.StartsWith("PLACE"))
       {
         return Place(GetLocation(command), GetDirection(command));
