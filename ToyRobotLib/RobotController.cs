@@ -87,7 +87,7 @@ namespace ToyRobotLib
 
       if (!validCommands.Contains(command))
       {
-        return null;
+        return "Command not recognised. Valid commands are 'PLACE X, Y, DIRECTION', 'MOVE', 'LEFT', 'RIGHT' and 'REPORT'";
       }
 
       return command switch
