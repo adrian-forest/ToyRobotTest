@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyVersion>2022.2.0.0</AssemblyVersion>
-    <FileVersion>2022.6.10.4</FileVersion>
+    <FileVersion>2022.6.10.5</FileVersion>
   </PropertyGroup>
 
 </Project>

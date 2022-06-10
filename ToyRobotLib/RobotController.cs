@@ -248,12 +248,12 @@ namespace ToyRobotLib
     {
       if (!ValidPosition(initialPosition))
       {
-        return Report();
+        return Report("Invalid position");
       }
 
       if (initialFacing == Directions.Invalid && !robotPlaced)
       {
-        return Report();
+        return Report("Invalid direction");
       }
 
       position = initialPosition;
@@ -280,6 +280,11 @@ namespace ToyRobotLib
       }
 
       return "Robot is at " + position.X + ", " + position.Y + ", facing " + currentFacing.ToString();
+    }
+
+    private string Report(string output)
+    {
+      return string.Concat(output, "\n", Report());
     }
   }
 }
